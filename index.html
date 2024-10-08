@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Punto de venta</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+  <header class="container-fluid bg-primary">
+    <h1>PUNTO DE VENTA</h1>
+  </header>
+  <main>
+    <section class="container">
+      <div class="row">
+        <div class="col">
+          <div class="card" style="width: 18rem;">
+            <img src="./assets/img/hamburguesa.jpeg" class="card-img-top" height="200px" width="200px">
+            <div class="card-body">
+              <h5 class="card-title">Paquete 1</h5>
+              <p class="card-text">
+                Hamburguesa, papas y refresco
+              </p>
+              <p class="card-text">
+                Precio: $120.00 MXN
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card" style="width: 18rem;">
+            <img src="./assets/img/hot-dog.jpeg" class="card-img-top" height="200px" width="200px">
+            <div class="card-body">
+              <h5 class="card-title">Paquete 2</h5>
+              <p class="card-text">
+                Hot dog, papas y ice
+              </p>
+              <p class="card-text">
+                Precio: $80.00 MXN
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card" style="width: 18rem;">
+            <img src="./assets/img/pizza.jpeg" class="card-img-top" height="200px" width="200px">
+            <div class="card-body">
+              <h5 class="card-title">Paquete 3</h5>
+              <p class="card-text">
+                Rebanada de pizza y refresco
+              </p>
+              <p class="card-text">
+                Precio: $40.00 MXN
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card" style="width: 18rem;">
+            <img src="./assets/img/donas.jpeg" class="card-img-top" height="200px" width="200px">
+            <div class="card-body">
+              <h5 class="card-title">Paquete 4</h5>
+              <p class="card-text">
+                Dona, galleta de chispas y cafe
+              </p>
+              <p class="card-text">
+                Precio: $100.00 MXN
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>  
+    </section>
+    <br>
+    <section class="container">
+      <button type="button" class="btn btn-primary" id="btn-new-order">Nueva Orden</button>
+    </section>
+    <hr>
+    <section class="container">
+      <table class="table" id="order-table">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <footer>
+    <section class="container">
+      <form>
+        <div class="row mb-3">
+          <label for="colFormLabel" class="col-sm-2 col-form-label">Subtotal</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="subtotal" readonly>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="colFormLabel" class="col-sm-2 col-form-label">IVA</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="iva" readonly>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="colFormLabel" class="col-sm-2 col-form-label">Total</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="total" readonly>
+          </div>
+        </div>
+      </form>
+    </section>
+  </footer>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="index.js"></script>
+</body>
+</html>
