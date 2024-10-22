@@ -1,14 +1,10 @@
-const IVA = 16;
-let items = [];
+//import { IVA } from './js/constants.js';
+import { showMenu } from './js/menu.js';
 
-class Product {
-  constructor(id, name, description, price) {
-    this.id = id;
-    this.name = name;
-    this.description = description;
-    this.price = price;
-  }
-}
+showMenu();
+
+/*
+let items = [];
 
 class Item extends Product {
   constructor(id, name, description, price, quantity) {
@@ -19,13 +15,6 @@ class Item extends Product {
     return this.price * this.quantity;
   }
 }
-
-const products = [
-  new Product(1, "Paquete 1", "Hamburguesa, papas y refresco", 120),
-  new Product(2, "Paquete 2", "Hotdog, papas y ice", 80),
-  new Product(3, "Paquete 3", "Rebanada de pizza y refresco", 40),
-  new Product(4, "Paquete 4", "Dona, galleta de chispas y cafe", 100)
-];
 
 function newOrder() {
   console.log("nueva orden");
@@ -111,3 +100,4 @@ button.addEventListener('click', function() {
     document.getElementById('total').value = `$${getTotal(subTotal, iva)}`;
   }, 100); 
 });
+*/
