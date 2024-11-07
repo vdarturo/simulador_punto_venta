@@ -1,92 +1,45 @@
-import { products } from './products.js';
 import { IVA } from './constants.js';
-import { Item } from './item.js'
-
-let items = [];
+class Order {
+  constructor(id) {
+    this.id = id;
+    this.items = [];
+  }
+}
 
 function newOrder() {
-  console.log("nueva orden");
-  document.getElementById('subtotal').value = ''; 
-  document.getElementById('iva').value = ''; 
-  document.getElementById('total').value = '';
-
-  for(let i = 0; i<items.length; i++) {
-    document.getElementById('order-table').deleteRow(-1);
+  let order;
+  let keys = Object.keys(localStorage);
+  
+  if(keys.length === 0) {
+    order = new Order(1);
+  } else {
+    order = new Order(localStorage.length+1);
   }
 
-  items = [];
+  localStorage.setItem(order.id, JSON.stringify(order));
+  return order.id;
 }
 
-function searchProduct(productId) {
-  return products.find(({id}) => id == productId);
-}
-
-function addItem(product, quantity) {
-  let item = new Item(product.id, product.name, product.description, product.price, quantity);
-  items.push(item);
-  document.getElementById('order-table').insertRow(-1).innerHTML = `
-    <td>${item.name}: ${item.description}</td>
-    <td>$${item.price}</td>
-    <td>${item.quantity}</td>
-    <td>$${item.getSubTotal()}</td>
-  `
-}
-
-function getSubTotal() {
+function showSubtotal() {
   let subtotal = 0;
-  for(const item of items) {
-    subtotal += item.getSubTotal();
+  let order = JSON.parse(localStorage.getItem(document.getElementById('txt-order').value));
+  for(let i = 0; i < order.items.length; i++) {
+    subtotal += (order.items[i].price * order.items[i].quantity);
   }
-  return subtotal;
+  document.getElementById('txt-subtotal').value = `${subtotal}`; 
 }
 
-function getIva(subTotal) {
-  return subTotal*(IVA/100);
+function showIva() {
+  let subtotal = parseFloat(document.getElementById('txt-subtotal').value);
+  let iva = subtotal*(IVA/100);
+  document.getElementById('txt-iva').value = `${iva.toFixed(2)}`;
 }
 
-function getTotal(subtotal, iva) {
-  return subtotal+iva;
+function showTotal() {
+  let subtotal = parseFloat(document.getElementById('txt-subtotal').value);
+  let iva = parseFloat(document.getElementById('txt-iva').value);
+  let total = subtotal + iva;
+  document.getElementById('txt-total').value = `${total.toFixed(2)}`;
 }
 
-const btnNewOrder = document.getElementById('btn-new-order');
-
-btnNewOrder.addEventListener('click', function() {
-  newOrder();
-
-  setTimeout(() => {
-    do {
-      let productId;
-      let product;
-      let quantityItems;
-      
-      do {
-        productId = parseInt(prompt('Introduzca el número de paquete:'));
-        product = searchProduct(productId);
-        if(product === null) {
-          alert("El número de paquete es incorrecto, vuelva a ingresarlo");
-        }
-      } while(product === null);
-      
-      do {
-        quantityItems = parseInt(prompt('Introduzca la cantidad:'));
-        if(Number.isNaN(quantityItems)) {
-          alert("La cantidad debe un valor númerico, vuelva a introducirla");
-        } else if(quantityItems <= 0) {
-          alert("La cantidad debe ser mayor a cero, vuelva a introducirla");
-        }
-      } while(Number.isNaN(quantityItems) || (quantityItems <= 0));  
-      
-      addItem(product, quantityItems);
-    } while(confirm("¿Desea agregar otro producto?"));
-    
-    let subTotal = getSubTotal();
-    document.getElementById('subtotal').value = `$${getSubTotal()}`; 
-    
-    let iva = getIva(subTotal)
-    document.getElementById('iva').value = `$${getIva(subTotal)}`; 
-    
-    document.getElementById('total').value = `$${getTotal(subTotal, iva)}`;
-  }, 100); 
-});
-
-export { btnNewOrder };
+export { Order, newOrder, showSubtotal, showIva, showTotal };
