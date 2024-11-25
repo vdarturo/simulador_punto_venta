@@ -3,6 +3,7 @@ import { newOrder, showSubtotal, showIva, showTotal } from './js/order.js';
 import { addItem, cleanItemTable, showItemTable } from './js/item.js';
 import { searchProduct } from './js/products.js';
 
+
 // Para mostrar el menu de comida
 showMenu();
 
@@ -57,11 +58,40 @@ setTimeout(() => {
   });
 
   // Pagar orden
-  btnPay.addEventListener('click', function() {
-    disabledItemButtons();
-    cleanItemTable();
-    cleanData();
-    btnNewOrder.disabled = false;
-    btnPay.disabled = true;
+  btnPay.addEventListener('click', function() {    
+    const new_order = {
+      "num_order": parseInt(document.getElementById('txt-order').value),
+      "subtotal": parseFloat(document.getElementById('txt-subtotal').value),
+      "iva": parseFloat(document.getElementById('txt-iva').value),
+      "total": parseFloat(document.getElementById('txt-total').value)
+    }
+
+    fetch("https://dghstvwvsvzgpuynyjqz.supabase.co/rest/v1/orders",
+      {
+        method: 'POST',
+        headers: {
+          'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRnaHN0dnd2c3Z6Z3B1eW55anF6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzI0NzUxODEsImV4cCI6MjA0ODA1MTE4MX0.1zAvAKBOkdh4U_Khs6t8lIHTlOX3IUlxCZMSJCjkdQk',
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRnaHN0dnd2c3Z6Z3B1eW55anF6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzI0NzUxODEsImV4cCI6MjA0ODA1MTE4MX0.1zAvAKBOkdh4U_Khs6t8lIHTlOX3IUlxCZMSJCjkdQk',
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify(new_order)
+      }
+    ).then(data => {
+      if (data.ok) {
+        Swal.fire({
+          title: 'Orden: ' + document.getElementById('txt-order').value,
+          confirmButtonText: 'Cerrar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            disabledItemButtons();
+            cleanItemTable();
+            cleanData();
+            btnNewOrder.disabled = false;
+            btnPay.disabled = true;
+          }
+        });
+      }
+    })
   });
 }, "300");
