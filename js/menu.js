@@ -5,8 +5,8 @@ const showMenu = () => {
   fetch("https://dghstvwvsvzgpuynyjqz.supabase.co/rest/v1/products?select=*",
     {
       headers: {
-        'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRnaHN0dnd2c3Z6Z3B1eW55anF6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzI0NzUxODEsImV4cCI6MjA0ODA1MTE4MX0.1zAvAKBOkdh4U_Khs6t8lIHTlOX3IUlxCZMSJCjkdQk',
-        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRnaHN0dnd2c3Z6Z3B1eW55anF6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzI0NzUxODEsImV4cCI6MjA0ODA1MTE4MX0.1zAvAKBOkdh4U_Khs6t8lIHTlOX3IUlxCZMSJCjkdQk'
+        'apikey': '',
+        'Authorization': ''
       }
     }
   )
